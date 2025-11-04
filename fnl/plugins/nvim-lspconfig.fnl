@@ -8,8 +8,6 @@
                (require-and :vim.lsp.log #($.set_format_func vim.inspect)))})
 
 (fn M.config []
-  (local lspconfig (require :lspconfig))
-
   (vim.api.nvim_create_autocmd :LspAttach
                                {:callback (fn [event]
                                             (vim.keymap.set :n :gd (. (require :telescope.builtin) :lsp_definitions))
@@ -30,11 +28,11 @@
                                :group (vim.api.nvim_create_augroup :fvim-lsp-attach {:clear true})})	
 
 
-  (lspconfig.clangd.setup {})
-  (lspconfig.rust_analyzer.setup {})
-  (lspconfig.fennel_language_server.setup {})
-  (lspconfig.pyright.setup {})
-  (lspconfig.zls.setup {})
-  (lspconfig.gopls.setup {}))
+  (vim.lsp.enable :clangd)
+  (vim.lsp.enable :rust_analyzer)
+  (vim.lsp.enable :fennel_language_server)
+  (vim.lsp.enable :pyright)
+  (vim.lsp.enable :zls)
+  (vim.lsp.enable :gopls))
                        
 M
