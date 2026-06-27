@@ -1,5 +1,6 @@
 (local M {1 :nvim-treesitter/nvim-treesitter
           :event :BufReadPost
+          :tag "v0.10.0"
           :dependencies [:nvim-treesitter/nvim-treesitter-textobjects]
           :build ":TSUpdate"})
 
@@ -10,7 +11,7 @@
                   :auto_install true
                   :context_commentstring {:enable true}
                   :incremental_selection {:enable true}
-                  :indent {:enable true}
+                  :indent {:enable true :disable  ["c"]}
                   :textobjects {:select {:enable true
                                          :lookahead true
                                          :keymaps {:af "@function.outer"

@@ -3,7 +3,7 @@
 
 (local M {1 :ej-shafran/compile-mode.nvim
        :dependencies [ { 1 :nvim-lua/plenary.nvim }
-                       { 1 :m00qek/baleia.nvim :tag "v1.3.0" }
+                       { 1 :m00qek/baleia.nvim :tag "v1.4.0" }
                      ]})
 
 (fn M.config [] 

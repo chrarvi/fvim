@@ -17,6 +17,10 @@
 (set! relativenumber)
 (set! numberwidth 3)
 
+(set! showtabline 0)
+(set! laststatus 0)
+(set! conceallevel 2)
+
 ;; mouse
 (set! mouse :a)
 

@@ -1,4 +1,4 @@
-(local M {1 :ggandor/leap.nvim :config true})
+(local M {1 :https://codeberg.org/andyg/leap.nvim :config true})
 
 (fn M.config []
   (local leap (require :leap))
