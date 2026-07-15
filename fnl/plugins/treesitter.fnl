@@ -1,40 +1,25 @@
+(import-macros {: set! : set+} :hibiscus.vim)
+
 (local M {1 :nvim-treesitter/nvim-treesitter
           :event :BufReadPost
-          :tag "v0.10.0"
           :dependencies [:nvim-treesitter/nvim-treesitter-textobjects]
           :build ":TSUpdate"})
 
 (fn M.config []
-  (local configs (require :nvim-treesitter.configs))
-  (configs.setup {:highlight {:enable true}
-                  :autotag {:enable true}
-                  :auto_install true
-                  :context_commentstring {:enable true}
-                  :incremental_selection {:enable true}
-                  :indent {:enable true :disable  ["c"]}
-                  :textobjects {:select {:enable true
-                                         :lookahead true
-                                         :keymaps {:af "@function.outer"
-                                                   :if "@function.inner"
-                                                   :ac "@class.outer"
-                                                   :ic "@class.inner"}}
-                                :move {:enable true
-                                       :set_jumps true
-                                       :goto_next_start {"]f" {:query "@function.outer"
-                                                               :desc "Next function start"}
-                                                         "]a" {:query "@parameter.inner"
-                                                               :desc "Next argument start"}}
-                                       :goto_next_end {"]F" {:query "@function.outer"
-                                                             :desc "Next function end"}
-                                                       "]A" {:query "@parameter.inner"
-                                                             :desc "Next argument end"}}
-                                       :goto_previous_start {"[f" {:query "@function.outer"
-                                                                   :desc "Previous function start"}
-                                                             "[a" {:query "@parameter.inner"
-                                                                   :desc "Previous argument start"}}
-                                       :goto_previous_end {"[F" {:query "@function.outer"
-                                                                 :desc "Previous function end"}
-                                                           "[A" {:query "@parameter.inner"
-                                                                 :desc "Previous argument end"}}}}}))
+  (local ts (require :nvim-treesitter))
+  (ts.setup {:install_dir (.. (vim.fn.stdpath :data) :/site)})
+  (local ensure-installed [:lua :fennel :python :zig])
+  (local already-installed (ts.get_installed))
+  (local parsers-to-install (: (: (vim.iter ensure-installed) :filter
+                                  (fn [parser]
+                                    (not (vim.tbl_contains already-installed
+                                                           parser))))
+                               :totable))
+  (ts.install parsers-to-install)
+  (vim.api.nvim_create_autocmd :FileType
+                               {:callback (fn []
+                                            (pcall vim.treesitter.start)
+                                            (set vim.bo.indentexpr
+                                                  "v:lua.require'nvim-treesitter'.indentexpr()"))}))
 
 M

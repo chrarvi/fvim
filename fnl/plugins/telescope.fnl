@@ -2,7 +2,6 @@
 
 (local M
        {1 :nvim-telescope/telescope.nvim
-        :tag :0.1.6
         :lazy false
         :config true
         :dependencies [:nvim-lua/plenary.nvim
