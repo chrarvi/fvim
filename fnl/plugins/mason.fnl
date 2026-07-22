@@ -15,7 +15,7 @@
   (local mason-lspconfig (require :mason-lspconfig))
   (mason-lspconfig.setup {:ensure_installed [:rust_analyzer
                                              :clangd
-                                             :pyright
+                                             :basedpyright
                                              :fennel_language_server]}))
 
 (local M [{1 :williamboman/mason.nvim
