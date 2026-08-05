@@ -28,6 +28,8 @@
 
 (map! [n] :<leader>ol :<cmd>Lazy<CR>)
 
+(map! [n] :<leader>. :<cmd>Ex<CR>)
+
 (map! [n] :<leader>br :<cmd>edit!<CR>)
 (map! [n] :<leader>bf vim.lsp.buf.format)
 (map! [n] :<leader>bn :<cmd>enew<CR>)

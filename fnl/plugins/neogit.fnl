@@ -2,8 +2,7 @@
 
 (local M {1 :NeogitOrg/neogit
           :dependencies [:nvim-lua/plenary.nvim
-                         :sindrets/diffview.nvim
-                         :nvim-telescope/telescope.nvim]
+                         :sindrets/diffview.nvim ]
           :config true
           :keys [{1 :<leader>gs 2 #(require-and :neogit #($.open))}]
           :lazy false})
