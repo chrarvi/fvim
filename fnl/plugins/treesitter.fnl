@@ -2,15 +2,12 @@
 
 (local M
   {1 :nvim-treesitter/nvim-treesitter
-   :branch :master
    :lazy false
-   :dependencies [{1 :nvim-treesitter/nvim-treesitter-textobjects
-                   :branch :master}]
+   :dependencies [{1 :nvim-treesitter/nvim-treesitter-textobjects }]
    :build ":TSUpdate"})
 
 (fn M.config []
-  (local ts (require :nvim-treesitter.configs))
-  (ts.setup {:ensure_installed [:python]
-             :sync_install true}))
+  (local ts (require :nvim-treesitter))
+  (ts.install [:python :markdown :markdown_inline :c :cpp :cuda :zig :rust :dockerfile :diff :fennel :json :yaml :toml :sql]))
 
 M
