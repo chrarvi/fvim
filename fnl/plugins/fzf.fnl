@@ -4,9 +4,8 @@
 
 (fn M.config []
   (local fzf (require :fzf-lua))
-  (fzf.setup {1 :ivy :keymap {:fzf {:ctrl-q :select-all+accept}}})
+  (fzf.setup {1 :ivy :globals { :multiprocess :true } :keymap {:fzf {:ctrl-q :select-all+accept}}})
   (map! [n] :<leader>bb fzf.buffers)
-  (map! [n] :<leader>br fzf.history)
   (map! [n] :<leader>bl fzf.blines)
   (map! [n] :<leader>bL fzf.lines)
   (map! [n] :<leader>ff fzf.files)
