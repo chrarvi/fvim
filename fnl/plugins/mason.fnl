@@ -1,27 +1,31 @@
-(import-macros {: map!} :hibiscus.vim)
+(import-macros {: map!} :hibiscus.vim)                                                                                                                                         
 
-(fn mason-config []
-  (local mason (require :mason))
-  (local options {:ensure_installed [:black :isort]})
-  (mason.setup options)
-
-  (fn mason-install-all []
-    (vim.cmd (.. "MasonInstall " (table.concat options.ensure_installed " "))))
-
-  (vim.api.nvim_create_user_command :MasonInstallAll mason-install-all {})
+(fn mason-config []                                                                                                                                                            
+  ((. (require :mason) :setup) {})                                                                                                                                             
   (map! [n] :<leader>om :<cmd>Mason<CR>))
 
 (fn mason-lspconfig-config []
-  (local mason-lspconfig (require :mason-lspconfig))
-  (mason-lspconfig.setup {:ensure_installed [:rust_analyzer
-                                             :clangd
-                                             :ty
-                                             :fennel_language_server]}))
+  ((. (require :mason-lspconfig) :setup)
+   {:ensure_installed [:rust_analyzer
+                       :clangd
+                       :ty
+                       :fennel_language_server]}))
 
-(local M [{1 :williamboman/mason.nvim
-           :config mason-lspconfig-config
-           :dependencies {1 :williamboman/mason-lspconfig.nvim
-                          :config mason-config}}])
+(fn mason-tool-installer-config []
+  ((. (require :mason-tool-installer) :setup)
+   {:ensure_installed [:ruff
+                       :debugpy]
+    :run_on_start true}))
 
-M
+[
+ {1 :williamboman/mason.nvim
+  :config mason-config}
 
+ {1 :williamboman/mason-lspconfig.nvim
+  :dependencies [:williamboman/mason.nvim]
+  :config mason-lspconfig-config}
+
+ {1 :WhoIsSethDaniel/mason-tool-installer.nvim
+  :dependencies [:williamboman/mason.nvim]
+  :config mason-tool-installer-config}
+]
