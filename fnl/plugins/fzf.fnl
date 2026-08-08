@@ -8,7 +8,7 @@
   (map! [n] :<leader>bb fzf.buffers)
   (map! [n] :<leader>bl fzf.blines)
   (map! [n] :<leader>bL fzf.lines)
-  (map! [n] :<leader>ff fzf.files)
+  (map! [n] :<leader>ff (fn [] (fzf.files {:cwd (vim.fn.expand "%:p:h")})))
   (map! [n] :<leader>fr fzf.oldfiles)
   (map! [n] :<leader>pf fzf.vcs_files)
   (map! [n] :<leader>/ fzf.grep_project)
