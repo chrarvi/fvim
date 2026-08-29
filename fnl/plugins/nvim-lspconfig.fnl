@@ -12,7 +12,7 @@
   (vim.api.nvim_create_autocmd :LspAttach
                                {:callback (fn [event]
                                             (vim.keymap.set :n :gd fzf.lsp_definitions)
-                                            (vim.keymap.set :n :gR fzf.lsp_references)
+                                            (vim.keymap.set :n :gr fzf.lsp_references)
                                             (vim.keymap.set :n :gI fzf.lsp_implementations)
                                             (vim.keymap.set :n :<leader>lD fzf.lsp_typedefs)
                                             (vim.keymap.set :n :<leader>ls fzf.lsp_document_symbols)
