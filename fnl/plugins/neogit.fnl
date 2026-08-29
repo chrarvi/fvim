@@ -1,8 +1,12 @@
 (local {: require-and} (require :functions))
 
-(local M {1 :NeogitOrg/neogit
+(local M {1 :aliaksandr-trush/neogit
+          :branch :fix_fzf_lua_finder
           :dependencies [:nvim-lua/plenary.nvim
-                         :sindrets/diffview.nvim ]
+                         :sindrets/diffview.nvim 
+                         :m00qek/baleia.nvim
+                         :ibhagwan/fzf-lua
+                         ]
           :config true
           :keys [{1 :<leader>gs 2 #(require-and :neogit #($.open))}]
           :lazy false})
