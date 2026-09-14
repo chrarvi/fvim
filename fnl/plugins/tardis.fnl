@@ -1,22 +1,13 @@
 (import-macros {: map!} :hibiscus.vim)
+(local {: gh} (require :functions))
 
-(local M { 1 :FredeEb/tardis.nvim 
-       :dependencies [ :nvim-lua/plenary.nvim ]
-       :config true
-       })
+(vim.pack.add [(gh :nvim-lua/plenary.nvim) (gh :FredeEb/tardis.nvim)])
 
-(fn M.config [] 
-  (local tardis (require :tardis-nvim))
-  (tardis.setup {
-                :keymap {
-                  :next :p
-                  :prev :n
-                  :quit :q
-                  :revision_message :<C-m>
-                  :commit :<C-a>
-                } })
+(local tardis (require :tardis-nvim))
+(tardis.setup {:keymap {:next :p
+                        :prev :n
+                        :quit :q
+                        :revision_message :<C-m>
+                        :commit :<C-a>}})
 
-  (map! [n] :<leader>gt :<cmd>Tardis<CR>))
-
-M
-
+(map! [n] :<leader>gt :<cmd>Tardis<CR>)

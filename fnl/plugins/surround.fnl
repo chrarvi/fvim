@@ -1,8 +1,4 @@
-(local M { 1 :kylechui/nvim-surround 
-       :config true})
+(local {: require-and : gh} (require :functions))
 
-(fn M.config [] 
-  (local surround (require :nvim-surround))
-  (surround.setup {}))
-
-M
+(vim.pack.add [(gh :kylechui/nvim-surround)])
+(require-and :nvim-surround #($.setup {}))

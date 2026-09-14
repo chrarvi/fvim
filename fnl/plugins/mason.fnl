@@ -1,31 +1,18 @@
-(import-macros {: map!} :hibiscus.vim)                                                                                                                                         
+(import-macros {: map!} :hibiscus.vim)
+(local {: require-and : gh} (require :functions))
 
-(fn mason-config []                                                                                                                                                            
-  ((. (require :mason) :setup) {})                                                                                                                                             
-  (map! [n] :<leader>om :<cmd>Mason<CR>))
+(vim.pack.add [(gh :williamboman/mason.nvim)
+               (gh :williamboman/mason-lspconfig.nvim)
+               (gh :WhoIsSethDaniel/mason-tool-installer.nvim)])
 
-(fn mason-lspconfig-config []
-  ((. (require :mason-lspconfig) :setup)
-   {:ensure_installed [:rust_analyzer
-                       :clangd
-                       :ty
-                       :fennel_language_server]}))
+(require-and :mason #($.setup {}))
+(map! [n] :<leader>om :<cmd>Mason<CR>)
 
-(fn mason-tool-installer-config []
-  ((. (require :mason-tool-installer) :setup)
-   {:ensure_installed [:ruff
-                       :debugpy]
-    :run_on_start true}))
+(require-and :mason-lspconfig
+             #($.setup {:ensure_installed [:rust_analyzer
+                                           :clangd
+                                           :ty
+                                           :fennel_language_server]}))
 
-[
- {1 :williamboman/mason.nvim
-  :config mason-config}
-
- {1 :williamboman/mason-lspconfig.nvim
-  :dependencies [:williamboman/mason.nvim]
-  :config mason-lspconfig-config}
-
- {1 :WhoIsSethDaniel/mason-tool-installer.nvim
-  :dependencies [:williamboman/mason.nvim]
-  :config mason-tool-installer-config}
-]
+(require-and :mason-tool-installer
+             #($.setup {:ensure_installed [:ruff :debugpy] :run_on_start true}))

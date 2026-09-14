@@ -1,12 +1,9 @@
 (import-macros {: map!} :hibiscus.vim)
+(local {: gh} (require :functions))
 
-(local M { 1 :lmburns/lf.nvim :dependencies [:akinsho/toggleterm.nvim]})
+(vim.pack.add [(gh :akinsho/toggleterm.nvim) (gh :lmburns/lf.nvim)])
 
-(fn M.config []
-  (local lf (require :lf))
-  (lf.setup {:escape_quit false :winblend 0})
+(local lf (require :lf))
+(lf.setup {:escape_quit false :winblend 0})
 
-  (map! [n] :<leader>or lf.start)
-)
-
-M
+(map! [n] :<leader>or lf.start)

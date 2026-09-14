@@ -1,13 +1,10 @@
 (import-macros {: map!} :hibiscus.vim)
+(local {: gh} (require :functions))
 
-(local M { 1 :f-person/git-blame.nvim
-       :config true})
+(vim.pack.add [(gh :f-person/git-blame.nvim)])
 
-(fn M.config [] 
-  (local blame (require :gitblame))
-  (blame.setup {:enabled false})
+(local gitblame (require :gitblame))
+(gitblame.setup {:enabled false})
 
-  (map! [n] :<leader>gB :<cmd>GitBlameToggle<CR>))
-
-M
+(map! [n] :<leader>gB :<cmd>GitBlameToggle<CR>)
 

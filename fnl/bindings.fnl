@@ -26,8 +26,6 @@
 (map! [v] :<M-up> ":m '>-2<CR>gv=gv")
 (map! [n] :J "mzJ`z")
 
-(map! [n] :<leader>ol :<cmd>Lazy<CR>)
-
 (map! [n] :<leader>. :<cmd>Ex<CR>)
 
 (map! [n] :<leader>br :<cmd>edit!<CR>)

@@ -15,5 +15,7 @@
          (result:gsub "^%s*(.-)%s*$" "%1"))
     result))
 
+(fn M.gh [src] (.. "https://github.com/" src))
+(fn M.cb [src] (.. "https://codeberg.org/" src))
 
 M

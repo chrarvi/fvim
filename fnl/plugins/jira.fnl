@@ -1,8 +1,5 @@
-(local M {1 :christoffer-arvidsson/cmp-jira-issues.nvim
-       :dependencies [:nvim-lua/plenary.nvim :hrsh7th/nvim-cmp]})
+(local {: require-and : gh} (require :functions))
 
-(fn M.config []
-  (local jira (require :cmp-jira-issues))
-  (jira.setup {}))
+(vim.pack.add [(gh :nvim-lua/plenary.nvim) (gh :chrarvi/cmp-jira-issues.nvim)])
 
-M
+(require-and :cmp-jira-issues #($.setup {}))

@@ -1,9 +1,6 @@
 (import-macros {: map!} :hibiscus.vim)
+(local {: require-and : gh} (require :functions))
 
-(local M { 1 :mbbill/undotree 
-       :config true })
+(vim.pack.add [(gh :mbbill/undotree)])
 
-(fn M.config [] 
-  (map! [n] :<leader>ou vim.cmd.UndotreeToggle))
-
-M
+(map! [n] :<leader>ou vim.cmd.UndotreeToggle)

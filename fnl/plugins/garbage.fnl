@@ -1,4 +1,3 @@
-{1 :zeioth/garbage-day.nvim
-:dependencies :neovim/nvim-lspconfig
-:evend :VeryLazy
-}
+(local {: gh} (require :functions))
+
+(vim.pack.add [(gh :neovim/nvim-lspconfig) (gh :zeioth/garbage-day.nvim)])

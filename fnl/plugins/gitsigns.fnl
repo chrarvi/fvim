@@ -1,10 +1,9 @@
-(local M {1 :lewis6991/gitsigns.nvim
-       :lazy false
-       :opts { :signs {
-           :add {:text "+"}
-           :change {:text "~"}
-           :delete {:text "_"}
-           :topdelete {:text "‾"}
-           :changedelete {:text "~"} }}})
+(local {: require-and : gh} (require :functions))
 
-M
+(vim.pack.add [(gh :lewis6991/gitsigns.nvim)])
+
+(require-and :gitsigns #($.setup {:signs {:add {:text "+"}
+                                :change {:text "~"}
+                                :delete {:text "_"}
+                                :topdelete {:text "‾"}
+                                :changedelete {:text "~"}}}))
