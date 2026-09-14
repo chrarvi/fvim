@@ -19,7 +19,7 @@
 
 (set! showtabline 0)
 (set! laststatus 0)
-(set! conceallevel 2)
+(set! conceallevel 1)
 
 ;; mouse
 (set! mouse :a)
