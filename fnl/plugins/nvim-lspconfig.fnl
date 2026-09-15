@@ -51,11 +51,21 @@
 
 (vim.lsp.enable :clangd)
 (vim.lsp.enable :rust_analyzer)
+
+(vim.lsp.config :fennel_language_server
+  {:settings
+   {:fennel
+    {:workspace
+     {:library (vim.api.nvim_list_runtime_paths)}
+     :diagnostics
+     {:globals [:vim]}}}})
 (vim.lsp.enable :fennel_language_server)
+
 (vim.lsp.config :ty
                 {:settings {:ty {:configurationFile :./confs/coding/ty.toml
                                  :configuration {:environment {:python :./tools/venv}}}}})
 
 (vim.lsp.enable :ty)
+
 (vim.lsp.enable :zls)
 (vim.lsp.enable :gopls)
