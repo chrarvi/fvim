@@ -1,9 +1,6 @@
 (import-macros {: map!} :hibiscus.vim)
+(local {: gh} (require :functions))
 
-(local M {1 :gabrielpoca/replacer.nvim :config true})
+(vim.pack.add [(gh :gabrielpoca/replacer.nvim)])
 
-(fn M.config [] 
-          (map! [n] :<leader>si "<cmd>lua require('replacer').run()<cr>"))
-
-M
-
+(map! [n] :<leader>si "<cmd>lua require('replacer').run()<cr>")

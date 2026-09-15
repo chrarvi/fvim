@@ -1,15 +1,12 @@
 (import-macros {: map!} :hibiscus.vim)
+(local {: gh} (require :functions))
 
-(local M {1 :stevearc/conform.nvim
-          :event [:BufReadPre :BufNewFile]
-          :config true})
+(vim.pack.add [ (gh :stevearc/conform.nvim) ])
 
-(fn M.config []
-  (local conform (require :conform))
-  (conform.setup {:formatters_by_ft {:fennel [:fnlfmt] :python [:isort :black]}})
-  (map! [n] :<leader>bf
-        (fn []
-          (conform.format {:lsp_fallback true :async true :timeout_ms 500}))))
+(local conform (require :conform))
+(conform.setup {:formatters_by_ft {:fennel [:fnlfmt] :python [:isort :black]}})
+(map! [n] :<leader>bf
+    (fn []
+      (conform.format {:lsp_fallback true :async true :timeout_ms 500})))
 
-M
 

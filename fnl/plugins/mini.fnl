@@ -1,13 +1,6 @@
-(local {: require-and} (require :functions))
+(local {: require-and : gh} (require :functions))
 
-(local M {1 :echasnovski/mini.nvim
-       :config true })
+(vim.pack.add [(gh :echasnovski/mini.nvim)])
 
-(fn M.config [] 
- (require-and :mini.ai #($.setup {:n_lines 500}))
-
- (local statusline (require :mini.statusline))
- (statusline.setup { :use_icons vim.g.have_nerd_font}))
-
-M
-
+(require-and :mini.ai #($.setup {:n_lines 500}))
+(require-and :mini.statusline #($.setup {:use_icons vim.g.have_nerd_font}))

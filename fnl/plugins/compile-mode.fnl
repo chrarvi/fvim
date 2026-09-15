@@ -1,16 +1,13 @@
 (import-macros {: map!} :hibiscus.vim)
 (import-macros {: g!} :hibiscus.vim)
+(local {: require-and : gh} (require :functions))
 
-(local M {1 :ej-shafran/compile-mode.nvim
-       :dependencies [ { 1 :nvim-lua/plenary.nvim }
-                       { 1 :m00qek/baleia.nvim }
-                     ]})
+(vim.pack.add [
+ (gh :nvim-lua/plenary.nvim)
+ (gh :m00qek/baleia.nvim)
+ (gh :ej-shafran/compile-mode.nvim)
+])
 
-(fn M.config [] 
-  (local compile (require :compile-mode))
-  (g! compile_mode {:baleia_setup true})
-
-  (map! [n] :<leader>pc "<cmd>Compile<CR>"))
-
-M
-      
+(local compile (require :compile-mode))
+(g! compile_mode {:baleia_setup true})
+(map! [n] :<leader>pc "<cmd>Compile<CR>")
