@@ -133,6 +133,10 @@
       "rev": "726b60c89f4bafef267a714ea1faa1335bdd414a",
       "src": "https://github.com/epwalsh/obsidian.nvim"
     },
+    "oil.nvim": {
+      "rev": "d3733d933833a0e59b813ecec99341527adf0c28",
+      "src": "https://github.com/stevearc/oil.nvim"
+    },
     "ouroboros.nvim": {
       "rev": "4c8fe182cf03f7d2ebe353f08472809c3b3ab94b",
       "src": "https://github.com/jakemason/ouroboros.nvim"
